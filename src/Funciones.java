@@ -33,38 +33,68 @@ public class Funciones {
         // retornamos el destino de la ruta seleccionada en String
         return Datos.rutas[opcion - 1].destino();
     }
-    //Seleccionar Fecha
-    public static LocalDate elegirFecha(){
+
+    // Seleccionar Fecha
+    public static LocalDate elegirFecha() {
         System.out.println("¿Cuándo viajas?");
         System.out.println("1. Hoy");
         System.out.println("2. Mañana");
         System.out.println("3. Elegir");
         int opcion = sc.nextInt();
-        if(opcion == 1){
+        if (opcion == 1) {
             return LocalDate.now(); // devuelve la fecha actual
-        }else if(opcion == 2){
-            return LocalDate.now().plusDays(1) ; // agrega un dia a la fecha actual
-        }else if(opcion == 3){
+        } else if (opcion == 2) {
+            return LocalDate.now().plusDays(1); // agrega un dia a la fecha actual
+        } else if (opcion == 3) {
             System.out.println("Dia: ");
             int dia = sc.nextInt();
-            LocalDate hoy = LocalDate.now(); // obtenemos la fecha actual 
-            return LocalDate.of(2026,hoy.getMonth(), dia); // devuelve la fecha seleccionada
+            LocalDate hoy = LocalDate.now(); // obtenemos la fecha actual
+            return LocalDate.of(2026, hoy.getMonth(), dia); // devuelve la fecha seleccionada
         }
         return null;
     }
 
     // Guardar ruta Seleccionada, Tipo de dato: Ruta
-    public static Datos.Ruta devolverRutaSeleccionada(String origen, String destino){
-        //Iteramos todo el array de rutas hasta encontra una ruta  que coincida con el origen y destino seleccionado 
-        for(int i = 0; i < Datos.rutas.length; i++){
-            if(origen.equalsIgnoreCase(Datos.rutas[i].origen()) && destino.equalsIgnoreCase(Datos.rutas[i].destino())){
+    public static Datos.Ruta devolverRutaSeleccionada(String origen, String destino) {
+        // Iteramos todo el array de rutas hasta encontra una ruta que coincida con el
+        // origen y destino seleccionado
+        for (int i = 0; i < Datos.rutas.length; i++) {
+            if (origen.equalsIgnoreCase(Datos.rutas[i].origen())
+                    && destino.equalsIgnoreCase(Datos.rutas[i].destino())) {
                 return Datos.rutas[i];
             }
         }
         return null;
     }
+
+    // Pasaje seleccionado
+    public static Datos.Pasaje pasaje(Datos.Ruta ruta, Datos.Bus bus, LocalDate fecha) {
+        return new Datos.Pasaje(bus, ruta, fecha);
+    }
+
     // Mostrar Buses Disponibles
-    public static Datos.Pasaje pasaje(Datos.Ruta ruta, Datos.Bus bus){
-        return new Datos.Pasaje(bus, ruta);
+    public static Datos.Bus mostrarBuses(Datos.Bus[] buses,Datos.Ruta ruta, LocalDate fecha){
+        int opcion;
+        do{
+            System.out.println("------Viajes recomendados para ti-----");
+        for(int i = 0; i < Datos.buses.length; i++){
+            double precioFinal = ruta.precio() + buses[i].variacionPrecio();
+            System.out.println(
+            (i + 1) + ". " + buses[i].tipoBus() + " | Asientos: " + buses[i].asientos() + 
+            " | " + ruta.origen() + " -> " + ruta.destino() + 
+            " | Precio: S/. " + precioFinal + " | Fecha: " + fecha
+        );
+        }
+        System.out.println("Elige un Buss: ");
+        opcion = sc.nextInt();
+        if (opcion < 1 || opcion > buses.length) {
+            System.out.println("Error: Opcion no valida. Vuelva a intentar");
+        }
+
+        }while(opcion < 1 || opcion > buses.length);
+
+        return buses[opcion - 1];
+        
+
     }
 }

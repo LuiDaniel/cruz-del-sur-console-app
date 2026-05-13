@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Datos {
 
     //Plantilla para crear las rutas  
@@ -66,7 +68,7 @@ public class Datos {
 
     //tipos de buses
     public record Bus(
-        String tipoBuss,
+        String tipoBus,
         String asientos,
         double variacionPrecio
 
@@ -80,6 +82,7 @@ public class Datos {
 
     public record Pasaje(
         Bus bus,
-        Ruta ruta
+        Ruta ruta,
+        LocalDate fecha
     ) {}
 }

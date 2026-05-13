@@ -1,9 +1,16 @@
+import java.time.LocalDate;
+
 public class Menus {
-    public static Datos.Ruta busquedaDePasajes(){
+    public static Datos.Pasaje busquedaDePasajes(){
         String origen = Funciones.elegirOrigen();
         String destino = Funciones.elegirDestino(origen);
-        
         Datos.Ruta rutaSeleccionada = Funciones.devolverRutaSeleccionada(origen, destino);
-        return rutaSeleccionada;
+        LocalDate fecha = Funciones.elegirFecha();
+        Datos.Bus bus = Funciones.mostrarBuses(Datos.buses, rutaSeleccionada, fecha);
+        Datos.Pasaje pasaje = Funciones.pasaje(rutaSeleccionada, bus, fecha);
+
+        
+        return pasaje;
+
     }
 }
