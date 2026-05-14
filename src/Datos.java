@@ -6,12 +6,20 @@ public class Datos {
     public record Ruta(
             String origen,
             String destino,
-            double precio) {
-    }
-
-    public static int precio(){
-        return 20;
-    }
+            double precio
+    ) {}
+    //Plantilla para crear los buses
+    public record Bus(
+        String tipoBus,
+        String asientos,
+        double variacionPrecio
+    ) {}
+    //Pasaje tendra todos los datos de bus, ruta y la fecha
+    public record Pasaje(
+        Bus bus,
+        Ruta ruta,
+        LocalDate fecha
+    ) {}
 
     //creamos un arreglo global de tipo Ruta
     static Ruta[] rutas = {
@@ -71,36 +79,11 @@ public class Datos {
             new Ruta("Arequipa", "Ilo", 50)
     };
 
-    //tipos de buses
-    public record Bus(
-        String tipoBus,
-        String asientos,
-        double variacionPrecio
-
-    ) {}
-    /**public record Ruta(
-            String origen,
-            String destino,
-            double precio) {
-    } */
-
+    //areglo de buses
     public static Bus[] buses = {
         new Bus("Evolution", "160", 10),
         new Bus("Confort Suite", "180", 67),
         new Bus("Suite", "160", 47)
     };
-
-    public record Pasaje(
-        Bus bus,
-        Ruta ruta,
-        LocalDate fecha
-    ) {}
-    /*  String tipoBus,
-        String asientos,
-        double variacionPrecio
-        String origen,
-        String destino,
-        double precio,
-        LocalDate fecha) */ 
 
 }

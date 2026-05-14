@@ -6,11 +6,11 @@ public class Funciones {
 
     // Seleccionar origen
     public static String elegirOrigen() {
-        System.out.println("-----ORIGENES-----");
+        System.out.println(Colores.BG_NEGRO + Colores.NEGRITA + "-----ORIGENES-----" + Colores.RESET);
         // Iteramos el arreglo de rutas
         for (int i = 0; i < Datos.rutas.length; i++) {
             System.out.println(
-                    (i + 1) + ". " + Datos.rutas[i].origen());
+                    Colores.AMARILLO + (i + 1) + ". " + Colores.VERDE + Datos.rutas[i].origen() + Colores.RESET);
         }
         System.out.println("Seleccione origen: ");
         int opcion = sc.nextInt();
@@ -24,7 +24,7 @@ public class Funciones {
         // Iteramos el arreglo de rutas
         for (int i = 0; i < Datos.rutas.length; i++) {
             // Validamos el origen ingresado para mostrar solo sus destinos disponibles
-            if (origen.equalsIgnoreCase(Datos.rutas[i].origen())) { // new Ruta("Lima", "Arequipa", 70),
+            if (origen.equalsIgnoreCase(Datos.rutas[i].origen())) {
                 System.out.println((i + 1) + ". " + Datos.rutas[i].destino());
             }
         }

@@ -1,11 +1,11 @@
 
 public class Main {
     public static void main(String[] args) {
-        //Datos.Pasaje pasaje = Menus.busquedaDePasajes();
-        //System.out.println(pasaje);
+        Datos.Pasaje pasaje = Menus.busquedaDePasajes();
+        System.out.println(pasaje);
     }
 
     public void boleta(Datos.Pasaje pasaje){
-        
+
     }
 }
