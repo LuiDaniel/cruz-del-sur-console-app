@@ -8,6 +8,11 @@ public class Datos {
             String destino,
             double precio) {
     }
+
+    public static int precio(){
+        return 20;
+    }
+
     //creamos un arreglo global de tipo Ruta
     static Ruta[] rutas = {
             new Ruta("Lima", "Arequipa", 70),
@@ -73,6 +78,11 @@ public class Datos {
         double variacionPrecio
 
     ) {}
+    /**public record Ruta(
+            String origen,
+            String destino,
+            double precio) {
+    } */
 
     public static Bus[] buses = {
         new Bus("Evolution", "160", 10),
@@ -85,4 +95,12 @@ public class Datos {
         Ruta ruta,
         LocalDate fecha
     ) {}
+    /*  String tipoBus,
+        String asientos,
+        double variacionPrecio
+        String origen,
+        String destino,
+        double precio,
+        LocalDate fecha) */ 
+
 }

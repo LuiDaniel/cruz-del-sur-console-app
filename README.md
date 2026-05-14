@@ -1,6 +1,9 @@
 # cruz-del-sur-console-app
 Aplicación de consola en Java para la gestión de transporte y venta de pasajes de Cruz del Sur.
 
+## teconologias usadas para los datos
+Hemos usado los records para almacenar datos necesarios 
+trasladamos los datos den tipos de datos definidos en records
 ## Funciones
 
 - Ver rutas
@@ -8,11 +11,11 @@ Aplicación de consola en Java para la gestión de transporte y venta de pasajes
 - Mostrar precios
 - Menú interactivo
 
-## Tecnologías usadas
-
+## Conceptos usadas
 - Java
 - Scanner
 - Bucles
+
 - Condicionales
 - Funciones
 - Records
@@ -23,5 +26,4 @@ Aplicación de consola en Java para la gestión de transporte y venta de pasajes
 2. Ejecutar Main.java
 
 ## Autor
-
-Daniel
+Bernabe Shatel

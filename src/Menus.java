@@ -8,7 +8,6 @@ public class Menus {
         LocalDate fecha = Funciones.elegirFecha();
         Datos.Bus bus = Funciones.mostrarBuses(Datos.buses, rutaSeleccionada, fecha);
         Datos.Pasaje pasaje = Funciones.pasaje(rutaSeleccionada, bus, fecha);
-
         
         return pasaje;
 

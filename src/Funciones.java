@@ -67,9 +67,19 @@ public class Funciones {
         return null;
     }
 
-    // Pasaje seleccionado
+    // Pasaje seleccionado, Devuelve un dato de tipo Pasaje
     public static Datos.Pasaje pasaje(Datos.Ruta ruta, Datos.Bus bus, LocalDate fecha) {
         return new Datos.Pasaje(bus, ruta, fecha);
+        /*Retorna un dato de tipo Pasaje:
+        Ruta:
+            origen,
+            destino,
+            precio
+        Bus:
+            tipoBus,
+            Asiento,
+            VariacionPrecio
+        fecha, */
     }
 
     // Mostrar Buses Disponibles
@@ -94,7 +104,7 @@ public class Funciones {
         }while(opcion < 1 || opcion > buses.length);
 
         return buses[opcion - 1];
-        
+         
 
     }
 }
