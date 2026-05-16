@@ -20,6 +20,29 @@ trasladamos los datos den tipos de datos definidos en records
 - Funciones
 - Records
 
+## Colores de texto
+- Negro
+- Rojo
+- Verde
+- Amarillo
+- Azul
+- Morado
+- Cyan
+- Blanco
+
+## Colores brillantes
+- Versiones más intensas y llamativas de los colores normales.
+
+## Fondos
+- Permiten cambiar el color del fondo del texto mostrado en consola.
+
+## Estilos:
+- Negrita
+- Subrayado
+- Texto invertido
+
+
+
 ## Cómo ejecutar
 
 1. Abrir el proyecto en VS Code
