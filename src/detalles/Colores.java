@@ -1,3 +1,4 @@
+package detalles;
 public class Colores {
 
     // RESET

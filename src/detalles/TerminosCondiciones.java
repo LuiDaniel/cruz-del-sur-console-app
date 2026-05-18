@@ -1,9 +1,11 @@
+package detalles;
 import java.util.Scanner;
 
 public class TerminosCondiciones {
-    Scanner sc = new Scanner(System.in);
+    
 
     public static int mostrarTerminos(){
+        Scanner sc = new Scanner(System.in);
         //while(opcion < 1 || opcion > 11){
         System.out.println("1. T&C – Programa Viajemos (Vigente hasta el 11.08.25)");
         System.out.println("2. T&C - Código de descuento Banco Falabella - 15%");
@@ -33,4 +35,6 @@ public class TerminosCondiciones {
             
             default:
                 System.out.println("gggg");
+        }
+    }
 }

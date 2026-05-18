@@ -1,9 +1,11 @@
 import java.util.Scanner;
+
+import detalles.Colores;
+
 import java.time.LocalDate;
 
 public class Funciones {
-    static Scanner sc = new Scanner(System.in);
-
+    public static Scanner sc = new Scanner(System.in);
     // Seleccionar origen
     public static String elegirOrigen() {
         System.out.println(Colores.BG_NEGRO + Colores.NEGRITA + "-----ORIGENES-----" + Colores.RESET);
@@ -109,7 +111,10 @@ public class Funciones {
         }while(opcion < 1 || opcion > buses.length);
 
         return buses[opcion - 1];
-         
+    }
 
+    // obtener el precio en double mediante el Pasaje Para validar pagos
+    public static double obtenerPrecio(Datos.Pasaje pasaje){ 
+        return pasaje.ruta().precio() + pasaje.bus().variacionPrecio();
     }
 }

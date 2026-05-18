@@ -8,8 +8,10 @@ public class Menus {
         LocalDate fecha = Funciones.elegirFecha();
         Datos.Bus bus = Funciones.mostrarBuses(Datos.buses, rutaSeleccionada, fecha);
         Datos.Pasaje pasaje = Funciones.pasaje(rutaSeleccionada, bus, fecha);
-
         return pasaje;
-
+    }
+    public static void prueba(Datos.Pasaje pasaje){
+        double precio = Funciones.obtenerPrecio(pasaje);
+        boolean exito = Pagos.procesarPagoConTarjeta(precio);
     }
 }
