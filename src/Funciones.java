@@ -12,7 +12,7 @@ public class Funciones {
             System.out.println(
                     Colores.AMARILLO + (i + 1) + ". " + Colores.VERDE + Datos.rutas[i].origen() + Colores.RESET);
         }
-        System.out.println("Seleccione origen: ");
+        System.out.println(Colores.AMARILLO + "Seleccione origen: " + Colores.RESET);
         int opcion = sc.nextInt();
         // devuelve el origen de la ruta seleccionada en String
         return Datos.rutas[opcion - 1].origen();
@@ -20,15 +20,17 @@ public class Funciones {
 
     // Seleccionar Destino
     public static String elegirDestino(String origen) {
-        System.out.println("-----DESTINOS-----");
+        System.out.println(Colores.BG_NEGRO + Colores.NEGRITA + "-----DESTINOS-----" + Colores.RESET);
         // Iteramos el arreglo de rutas
         for (int i = 0; i < Datos.rutas.length; i++) {
             // Validamos el origen ingresado para mostrar solo sus destinos disponibles
             if (origen.equalsIgnoreCase(Datos.rutas[i].origen())) {
-                System.out.println((i + 1) + ". " + Datos.rutas[i].destino());
+                System.out.println(
+                    Colores.AMARILLO + (i + 1) + ". " + Colores.VERDE + Datos.rutas[i].destino() + Colores.RESET);
             }
         }
-        System.out.println("Seleccione destino: ");
+        
+        System.out.println(Colores.AMARILLO + "Seleccione destino: " + Colores.RESET);
         int opcion = sc.nextInt();
         // retornamos el destino de la ruta seleccionada en String
         return Datos.rutas[opcion - 1].destino();
@@ -50,6 +52,8 @@ public class Funciones {
             int dia = sc.nextInt();
             LocalDate hoy = LocalDate.now(); // obtenemos la fecha actual
             return LocalDate.of(2026, hoy.getMonth(), dia); // devuelve la fecha seleccionada
+        }else{
+            System.out.println("Error");
         }
         return null;
     }
@@ -79,10 +83,11 @@ public class Funciones {
             tipoBus,
             Asiento,
             VariacionPrecio
-        fecha, */
+        fecha, 
+        EJEMPLO: Pasaje[bus=Bus[tipoBus=Suite, asientos=160, variacionPrecio=47.0], ruta=Ruta[origen=Puno, destino=Lima, precio=130.0], fecha=2026-05-18]*/
     }
 
-    // Mostrar Buses Disponibles
+    // Mostrar y seleccionar buses disponibles
     public static Datos.Bus mostrarBuses(Datos.Bus[] buses,Datos.Ruta ruta, LocalDate fecha){
         int opcion;
         do{

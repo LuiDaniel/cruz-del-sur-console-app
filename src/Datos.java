@@ -85,5 +85,6 @@ public class Datos {
         new Bus("Confort Suite", "180", 67),
         new Bus("Suite", "160", 47)
     };
+    
 
 }
