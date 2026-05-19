@@ -10,12 +10,14 @@ public class Menus {
         Datos.Pasaje pasaje = Funciones.pasaje(rutaSeleccionada, bus, fecha);
         return pasaje;
     }
-    public static void prueba(Datos.Pasaje pasaje){
+    public static Datos.Boleta generarBoleta(Datos.Pasaje pasaje){
+        Datos.Cliente cliente = FormularioCliente.pedirDatos();
         double precio = Pagos.obtenerPrecio(pasaje);
-        boolean exito = Pagos.procesarPagoConTarjeta(precio);
-    }
-    public void mostrarContactos(){
-        System.out.println("cruz del sur");
-        
+        boolean exito = Pagos.tipoDePago(precio);
+        if(exito){
+            return Boleta.generarBoleta(cliente, pasaje);
+        }else{
+            return null;
+        }
     }
 }

@@ -13,8 +13,16 @@ public class Funciones {
             System.out.println(
                     Colores.AMARILLO + (i + 1) + ". " + Colores.VERDE + Datos.rutas[i].origen() + Colores.RESET);
         }
-        System.out.println("Seleccione origen: ");
-        int opcion = sc.nextInt();
+        int opcion = 0;
+        while (opcion < 1 || opcion > Datos.rutas.length) {
+            System.out.println("Seleccione origen: ");
+            opcion = sc.nextInt();
+
+            if (opcion < 1 || opcion > Datos.rutas.length) {
+            System.out.println(Colores.ROJO + "Opción inválida. Intente de nuevo." + Colores.RESET);
+        }
+        }
+        
         // devuelve el origen de la ruta seleccionada en String
         return Datos.rutas[opcion - 1].origen();
     }
@@ -52,7 +60,7 @@ public class Funciones {
             System.out.println("Dia: ");
             int dia = sc.nextInt();
             LocalDate hoy = LocalDate.now(); // obtenemos la fecha actual
-            return LocalDate.of(2026, hoy.getMonth(), dia); // devuelve la fecha seleccionada
+            return LocalDate.of(2026, hoy.getMonthValue(), dia); // devuelve la fecha seleccionada
         } else {
             System.out.println("Error");
         }

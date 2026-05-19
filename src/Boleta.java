@@ -21,7 +21,7 @@ public class Boleta {
                 fecha,
                 subtotal,
                 igv,
-                0,
+                0.0,
                 total,
                 null, 
                 pasaje.ruta().origen());

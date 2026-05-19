@@ -2,7 +2,8 @@
 public class Main {
     public static void main(String[] args) {
         Datos.Pasaje pasaje = Menus.busquedaDePasajes();
-        Menus.prueba(pasaje);
+        Datos.Boleta boleta = Menus.generarBoleta(pasaje);
+        System.out.println(boleta);
     }
     
     

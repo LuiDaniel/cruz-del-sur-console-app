@@ -138,46 +138,58 @@ public class Datos {
             int anio,
             String genero) {
 
-        // 1. Definimos el patrón como una constante estática dentro del record
-        private static final Pattern EMAIL_PATTERN = Pattern
-                .compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+        private static final Pattern EMAIL_PATTERN = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
 
-        // Constructor compacto para validaciones
+        // Constructor compacto
         public Cliente {
-            if (dni == null || !dni.matches("\\d{8}")) {
-                throw new IllegalArgumentException("El numero de dni debe contener 8 digitos.");
+            // 1. Validar y limpiar el DNI
+            if (dni == null || !dni.trim().matches("\\d{8}")) {
+                throw new IllegalArgumentException("El número de DNI debe contener exactamente 8 dígitos.");
             }
-            if (nombres == null || nombres.trim().length() < 2) {
-                throw new IllegalArgumentException("EL nombre no puede estar vacio.");
-            }
-            if (apellidos == null || apellidos.trim().split("\\s+").length < 2) {
-                throw new IllegalArgumentException("Dos apellidos.");
-            }
+            dni = dni.trim(); // Reasignación para guardar el dato limpio
 
-            // 2. Agregamos la validación del correo electrónico
-            if (correo == null || !EMAIL_PATTERN.matcher(correo).matches()) {
+            // 2. Validar y limpiar Nombres
+            if (nombres == null || nombres.trim().length() < 2) {
+                throw new IllegalArgumentException("El nombre no puede estar vacío y debe tener al menos 2 letras.");
+            }
+            nombres = nombres.trim();
+
+            // 3. Validar y limpiar Apellidos (Acepta apellido paterno y materno)
+            if (apellidos == null || apellidos.trim().split("\\s+").length < 2) {
+                throw new IllegalArgumentException("Debe ingresar ambos apellidos (Paterno y Materno).");
+            }
+            apellidos = apellidos.trim();
+
+            // 4. Validar y limpiar Correo
+            if (correo == null || !EMAIL_PATTERN.matcher(correo.trim()).matches()) {
                 throw new IllegalArgumentException(
                         "El correo electrónico no tiene un formato válido (ejemplo@dominio.com).");
             }
+            correo = correo.trim();
+
+            // 5. Validar Género (Evita que dejen el género vacío o pongan letras raras)
+            if (genero == null || (!genero.trim().equalsIgnoreCase("M") && !genero.trim().equalsIgnoreCase("F"))) {
+                throw new IllegalArgumentException("El género debe ser obligatoriamente M (Masculino) o F (Femenino).");
+            }
+            genero = genero.trim().toUpperCase();
+
+            // 6. Validar lógicamente la Fecha de Nacimiento
             try {
-                // LocalDate.of(año, mes, día) lanza DateTimeException si la combinación es
-                // imposible
                 LocalDate fechaNacimiento = LocalDate.of(anio, mes, dia);
                 LocalDate hoy = LocalDate.now();
 
-                // Validación extra: No puede haber nacido en el futuro
                 if (fechaNacimiento.isAfter(hoy)) {
                     throw new IllegalArgumentException("La fecha de nacimiento no puede estar en el futuro.");
                 }
 
-                // No puede tener más de 120 años
                 if (fechaNacimiento.isBefore(hoy.minusYears(110))) {
-                    throw new IllegalArgumentException("La fecha de nacimiento no es realista.");
+                    throw new IllegalArgumentException(
+                            "La fecha de nacimiento no es realista (límite de edad superado).");
                 }
 
             } catch (DateTimeException e) {
                 throw new IllegalArgumentException(
-                        "La fecha de nacimiento ingresada no existe (revisa los días del mes o el año bisiesto).");
+                        "La fecha de nacimiento ingresada no existe (verifica los días del mes o el año bisiesto).");
             }
         }
     }
