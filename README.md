@@ -37,5 +37,6 @@ Se utilizaron records dentro de Datos.
 ## Autor
 Bernabe Shanthel 
 Nidduar Animal
+Daniela 
 
 
