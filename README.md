@@ -19,23 +19,15 @@ Aplicación de consola en Java para la gestión de transporte y venta de pasajes
 Ejemplo:
 - LocalDate fecha
 
-## Uso de Records
-Se utilizaron records dentro de Datos.
-## Records utilizados:
-•	Datos.Ruta 
-•	Datos.Bus 
-•	Datos.Pasaje 
-
-## subtitulo para esto //
-- Validaciones
-- Cálculos realizados
-
 ## Cómo ejecutar
 1. Abrir el proyecto en VS Code
 2. Ejecutar Main.java
 
-## Autor
-Bernabe Shanthel 
-Nidduar flojo
+## Autores
+Daniel
+Rafinha
+Smith
+Nidduar
+
 
 

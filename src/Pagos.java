@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Pagos {
-    //OBTENER EL SUBTOTAL
+    // OBTENER EL SUBTOTAL
 
     // obtener el precio en double mediante el Pasaje Para validar pagos
     public static double obtenerPrecio(Datos.Pasaje pasaje) {
@@ -9,6 +9,33 @@ public class Pagos {
         double igv = subtotal * 0.18;
         return subtotal + igv;
     }
+
+    // ELEGIR METODO DE PAGO
+    public static boolean tipoDePago(double montoAPagar) {
+        Scanner sc = new Scanner(System.in);
+        int opcion = -1;
+
+        while (opcion < 1 || opcion > 3) {
+            System.out.println("SELECCIONE EL MEDIO DE PAGO: ");
+            System.out.println("1. Tarjeta.");
+            System.out.println("2. Yape.");
+            System.out.println("3. Efectivo.");
+            opcion = sc.nextInt();
+        }
+
+        switch (opcion) {
+            case 1:
+                return procesarPagoConTarjeta(montoAPagar);
+            case 2:
+                return procesarPagoConYape(montoAPagar);
+            case 3:
+                return procesarPagoEfectivo(montoAPagar);
+            default:
+                System.out.println("Método no disponible.");
+                return false;
+        }
+    }
+
     // TARJETA
     public static boolean procesarPagoConTarjeta(double montoAPagar) {
         Scanner sc = new Scanner(System.in);
@@ -59,8 +86,61 @@ public class Pagos {
     }
 
     // YAPE
-    public static boolean procesarPagoConYape(double montoAPagar){
+    public static boolean procesarPagoConYape(double montoAPagar) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("\n--- PASARELA YAPE CRUZ DEL SUR ---");
+        System.out.printf("Monto a abonar: S/. %.2f\n", montoAPagar);
+        System.out.println("(Escribe 'X' para cancelar)");
+
+        while (true) {
+
+            System.out.println("\nIngrese número de celular registrado en Yape: ");
+            String celular = sc.nextLine().trim();
+            if (celular.equalsIgnoreCase("X")) {
+                return false;
+            }
+
+            if (!celular.matches("\\d{9}")) {
+                System.out.println("Error: el numero debe tener 9 digitos.");
+                return false;
+            }
+
+            System.out.println("Ingrese codigo de confirmacion Yape: ");
+            String codigo = sc.nextLine().trim();
+            if (codigo.equalsIgnoreCase("X")) {
+                return false;
+            }
+
+            System.out.println("\nValidando Yape...");
+            System.out.println(" Pago aprobado con éxito!");
+
+            return true;
+        }
+    }
+
+    // PAGO EN EFECTIVO
+    public static boolean procesarPagoEfectivo(double montoAPagar) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("\n--- PAGO EN EFECTIVO ---");
+        System.out.printf("Monto a pagar: S/. %.2f\n", montoAPagar);
+
+        System.out.println("Ingrese dinero entregado: ");
+        double dinero = sc.nextDouble();
+
+        if (dinero < montoAPagar) {
+            System.out.println("Dinero insuficiente.");
+            return false;
+        }
+
+        double vuelto = dinero - montoAPagar;
+
+        System.out.println("Pago aprobado.");
+        System.out.printf("Vuelto: S/. %.2f\n", vuelto);
+
         return true;
     }
 }
-

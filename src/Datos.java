@@ -71,11 +71,11 @@ public class Datos {
             String lugarDeCompra,
             String ruc,
             String tipoFactura,
-            String CodigoBoleto, // Ojo aquí: empieza con mayúscula
+            String codigoBoleto,
             String dni,
-            String nombre, // daniel
+            String nombre,
             String correo,
-            String Servicio, // Ojo aquí: empieza con mayúscula
+            String servicio,
             String ruta,
             String bus,
             LocalDate fecha,
@@ -85,14 +85,14 @@ public class Datos {
             double total,
             String totalString,
             String agencia) {
-        // Constructor secundario: Solo pide lo que varía en cada venta
+
+        // Constructor secundario: Ya NO pide el servicio por parámetro
         public Boleta(
                 String lugarDeCompra,
-                String CodigoBoleto,
+                String codigoBoleto,
                 String dni,
                 String nombre,
                 String correo,
-                String Servicio,
                 String ruta,
                 String bus,
                 LocalDate fecha,
@@ -102,19 +102,19 @@ public class Datos {
                 double total,
                 String totalString,
                 String agencia) {
-            // El "this" llama al constructor principal y rellena los datos de la empresa
-            // por ti
+
+            // El "this" mapea todo al constructor principal
             this(
-                    "Cruz del Sur", // nombreEmpresa (Fijo)
-                    "EL Placer de Viajar en Bus!", // fraseEmpresa (Fijo)
+                    "Cruz del Sur",
+                    "EL Placer de Viajar en Bus!",
                     lugarDeCompra,
-                    "20100227461", // ruc (Fijo)
-                    "BOLETA DE VENTA ELECTRÓNICA", // tipoFactura (Fijo)
-                    CodigoBoleto,
+                    "20100227461",
+                    "BOLETA DE VENTA ELECTRÓNICA",
+                    codigoBoleto,
                     dni,
-                    nombre, // Scanner "daniel"
+                    nombre,
                     correo,
-                    "Transporte Terreste",
+                    "Transporte Terrestre", // <-- Valor por defecto asignado aquí automáticamente
                     ruta,
                     bus,
                     fecha,
