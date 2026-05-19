@@ -59,5 +59,8 @@ public class Pagos {
     }
 
     // YAPE
+    public static boolean procesarPagoConYape(double montoAPagar){
+        return true;
+    }
 }
 

@@ -170,7 +170,7 @@ public class Datos {
                     throw new IllegalArgumentException("La fecha de nacimiento no puede estar en el futuro.");
                 }
 
-                //No puede tener más de 120 años
+                // No puede tener más de 120 años
                 if (fechaNacimiento.isBefore(hoy.minusYears(110))) {
                     throw new IllegalArgumentException("La fecha de nacimiento no es realista.");
                 }
@@ -182,8 +182,7 @@ public class Datos {
         }
     }
 
-
-    // creamos un arreglo global de tipo Ruta
+    // ARREGLO DE RUTAS
     static Ruta[] rutas = {
             // new Ruta(origen, destino, duracion, precio)
             new Ruta("Lima", "Arequipa", 16, 70.0),
@@ -244,11 +243,10 @@ public class Datos {
 
     // areglo de buses
     public static Bus[] buses = {
-            new Bus("Ica Express", "135", 10),
-            new Bus("Evolution", "160", 20),
-            new Bus("Suite", "160", 47),
+            new Bus("Ica Express  ", "135", 10),
+            new Bus("Evolution    ", "160", 20),
+            new Bus("Suite        ", "160", 47),
             new Bus("Confort Suite", "180", 67)
-
     };
 
 }

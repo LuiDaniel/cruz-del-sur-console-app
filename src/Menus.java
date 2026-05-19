@@ -14,4 +14,8 @@ public class Menus {
         double precio = Pagos.obtenerPrecio(pasaje);
         boolean exito = Pagos.procesarPagoConTarjeta(precio);
     }
+    public void mostrarContactos(){
+        System.out.println("cruz del sur");
+        
+    }
 }

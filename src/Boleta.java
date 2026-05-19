@@ -11,7 +11,7 @@ public class Boleta {
 
 
 
-        Datos.Boleta boleta = new Datos.Boleta(pasaje.ruta().origen(), "1234", cliente.dni(), cliente.nombres(), cliente.correo(),"jhfasdugh", ruta, pasaje.bus().tipoBus(), fecha, subtotal, igv, 0, total, null, pasaje.ruta().origen())
+        Datos.Boleta boleta = new Datos.Boleta(pasaje.ruta().origen(), "1234", cliente.dni(), cliente.nombres(), cliente.correo(),"jhfasdugh", ruta, pasaje.bus().tipoBus(), fecha, subtotal, igv, 0, total, null, pasaje.ruta().origen());
         return boleta;
     }
 }
