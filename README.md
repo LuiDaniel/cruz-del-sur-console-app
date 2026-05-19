@@ -35,5 +35,7 @@ Se utilizaron records dentro de Datos.
 2. Ejecutar Main.java
 
 ## Autor
-Bernabe Shatel
+Bernabe Shanthel 
+Nidduar Animal
+
 
