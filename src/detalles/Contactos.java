@@ -21,15 +21,33 @@ public class Contactos {
             "Av. Javier Prado 1109, La Victoria - Lima, Perú",
             "cruzdelsur@gmail.com", 
             "+51 987 876 567", 
-            "", 
-            "", 
-            "", 
-            ""));
+            "ig: @cruzdelsur", 
+            "Facebook: CRUZ DEL SUR", 
+            "Youtube: @CRUZ DEL SUR", 
+            "Twitter:@CRUZ DEL SUR"));
 
     public static void mostrarDatos(DatosEmpresa datos) {
         System.out.println(Colores.AMARILLO + datos.nombre() + Colores.RESET);
-        System.out.println(""); 
+        System.out.println("===============================");
+        System.out.println("CONTACTOS EMPRESA");
+        System.out.println("================================");
+
+        System.out.println("Empresa: "+datos.nombre());
+        System.out.println("Derechos Reservados: "+datos.derechosReservados());
+        System.out.println("Dirección: "+datos.direccion());
+        System.out.println("Correo: "+datos.correo());
+        System.out.println("Número: "+datos.numero());
+        System.out.println("Facebook: "+datos.fb());
+        System.out.println("Youtube: "+datos.youtube());
+        System.out.println("Instagram: "+datos.ig());
+        System.out.println("Twitter: "+datos.twiter());
+
+        System.out.println("===============================");
+
 
     }
+    public static void main(String[] args) {
+        mostrarDatos(datosEmpresa);
 
+    }
 }
