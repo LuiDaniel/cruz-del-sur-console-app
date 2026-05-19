@@ -11,7 +11,7 @@ public class Menus {
         return pasaje;
     }
     public static void prueba(Datos.Pasaje pasaje){
-        double precio = Funciones.obtenerPrecio(pasaje);
+        double precio = Pagos.obtenerPrecio(pasaje);
         boolean exito = Pagos.procesarPagoConTarjeta(precio);
     }
 }

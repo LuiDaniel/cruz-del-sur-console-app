@@ -1,6 +1,14 @@
 import java.util.Scanner;
 
 public class Pagos {
+    //OBTENER EL SUBTOTAL
+
+    // obtener el precio en double mediante el Pasaje Para validar pagos
+    public static double obtenerPrecio(Datos.Pasaje pasaje) {
+        double subtotal = pasaje.ruta().precio() + pasaje.bus().variacionPrecio();
+        double igv = subtotal * 0.18;
+        return subtotal + igv;
+    }
     // TARJETA
     public static boolean procesarPagoConTarjeta(double montoAPagar) {
         Scanner sc = new Scanner(System.in);
@@ -49,5 +57,7 @@ public class Pagos {
         System.out.println("💳 ¡Pago aprobado con éxito!");
         return true;
     }
+
+    // YAPE
 }
-// YAPE
+

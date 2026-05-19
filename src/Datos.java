@@ -1,7 +1,9 @@
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.regex.Pattern;
 
 public class Datos {
 
@@ -29,10 +31,10 @@ public class Datos {
 
     // PAGOS
     public record Tarjeta(
-        String numero,
-        String titular,
-        String vencimiento,
-        String cvv) {
+            String numero,
+            String titular,
+            String vencimiento,
+            String cvv) {
         // Constructor compacto para validaciones
         public Tarjeta {
             // 1. Validar número (16 dígitos numéricos)
@@ -61,17 +63,122 @@ public class Datos {
             }
         }
     }
-    
-    //BOLETA
+
+    // BOLETA
     public record Boleta(
-        String nombreEmpresa,
-        String fraseEmpresa,
-        String origen,
-        String ruc,
-        String tipoFactura,
-        String servicio,
-        String medioDePago
-    ) {}
+            String nombreEmpresa,
+            String fraseEmpresa,
+            String lugarDeCompra,
+            String ruc,
+            String tipoFactura,
+            String CodigoBoleto, // Ojo aquí: empieza con mayúscula
+            String dni,
+            String nombre,
+            String Servicio, // Ojo aquí: empieza con mayúscula
+            String ruta,
+            String bus,
+            LocalDate fecha,
+            double subtotal,
+            double igv,
+            double descuento,
+            double total,
+            String totalString,
+            String agencia) {
+        // Constructor secundario: Solo pide lo que varía en cada venta
+        public Boleta(
+                String lugarDeCompra,
+                String CodigoBoleto,
+                String dni,
+                String nombre,
+                String Servicio,
+                String ruta,
+                String bus,
+                LocalDate fecha,
+                double subtotal,
+                double igv,
+                double descuento,
+                double total,
+                String totalString,
+                String agencia) {
+            // El "this" llama al constructor principal y rellena los datos de la empresa
+            // por ti
+            this(
+                    "Cruz del Sur", // nombreEmpresa (Fijo)
+                    "EL Placer de Viajar en Bus!", // fraseEmpresa (Fijo)
+                    lugarDeCompra,
+                    "20100227461", // ruc (Fijo)
+                    "BOLETA DE VENTA ELECTRÓNICA", // tipoFactura (Fijo)
+                    CodigoBoleto,
+                    dni,
+                    nombre,
+                    Servicio,
+                    ruta,
+                    bus,
+                    fecha,
+                    subtotal,
+                    igv,
+                    descuento,
+                    total,
+                    totalString,
+                    agencia);
+        }
+    }
+
+    // DATOS DEL CLIENTE
+    public record Cliente(
+            String dni,
+            String nombres,
+            String apellidos,
+            String correo,
+            int dia,
+            int mes,
+            int anio,
+            String genero) {
+
+        // 1. Definimos el patrón como una constante estática dentro del record
+        private static final Pattern EMAIL_PATTERN = Pattern
+                .compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+
+        // Constructor compacto para validaciones
+        public Cliente {
+            if (dni == null || !dni.matches("\\d{8}")) {
+                throw new IllegalArgumentException("El numero de dni debe contener 8 digitos.");
+            }
+            if (nombres == null || nombres.trim().length() < 2) {
+                throw new IllegalArgumentException("EL nombre no puede estar vacio.");
+            }
+            if (apellidos == null || apellidos.trim().split("\\s+").length < 2) {
+                throw new IllegalArgumentException("Dos apellidos.");
+            }
+
+            // 2. Agregamos la validación del correo electrónico
+            if (correo == null || !EMAIL_PATTERN.matcher(correo).matches()) {
+                throw new IllegalArgumentException(
+                        "El correo electrónico no tiene un formato válido (ejemplo@dominio.com).");
+            }
+            try {
+                // LocalDate.of(año, mes, día) lanza DateTimeException si la combinación es
+                // imposible
+                LocalDate fechaNacimiento = LocalDate.of(anio, mes, dia);
+                LocalDate hoy = LocalDate.now();
+
+                // Validación extra: No puede haber nacido en el futuro
+                if (fechaNacimiento.isAfter(hoy)) {
+                    throw new IllegalArgumentException("La fecha de nacimiento no puede estar en el futuro.");
+                }
+
+                //No puede tener más de 120 años
+                if (fechaNacimiento.isBefore(hoy.minusYears(110))) {
+                    throw new IllegalArgumentException("La fecha de nacimiento no es realista.");
+                }
+
+            } catch (DateTimeException e) {
+                throw new IllegalArgumentException(
+                        "La fecha de nacimiento ingresada no existe (revisa los días del mes o el año bisiesto).");
+            }
+        }
+    }
+
 
     // creamos un arreglo global de tipo Ruta
     static Ruta[] rutas = {
@@ -134,9 +241,11 @@ public class Datos {
 
     // areglo de buses
     public static Bus[] buses = {
-            new Bus("Evolution", "160", 10),
-            new Bus("Confort Suite", "180", 67),
-            new Bus("Suite", "160", 47)
+            new Bus("Ica Express", "135", 10),
+            new Bus("Evolution", "160", 20),
+            new Bus("Suite", "160", 47),
+            new Bus("Confort Suite", "180", 67)
+
     };
 
 }

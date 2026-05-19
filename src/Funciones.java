@@ -1,11 +1,10 @@
 import java.util.Scanner;
-
 import detalles.Colores;
-
 import java.time.LocalDate;
 
 public class Funciones {
     public static Scanner sc = new Scanner(System.in);
+
     // Seleccionar origen
     public static String elegirOrigen() {
         System.out.println(Colores.BG_NEGRO + Colores.NEGRITA + "-----ORIGENES-----" + Colores.RESET);
@@ -14,7 +13,7 @@ public class Funciones {
             System.out.println(
                     Colores.AMARILLO + (i + 1) + ". " + Colores.VERDE + Datos.rutas[i].origen() + Colores.RESET);
         }
-        System.out.println(Colores.AMARILLO + "Seleccione origen: " + Colores.RESET);
+        System.out.println("Seleccione origen: ");
         int opcion = sc.nextInt();
         // devuelve el origen de la ruta seleccionada en String
         return Datos.rutas[opcion - 1].origen();
@@ -28,11 +27,11 @@ public class Funciones {
             // Validamos el origen ingresado para mostrar solo sus destinos disponibles
             if (origen.equalsIgnoreCase(Datos.rutas[i].origen())) {
                 System.out.println(
-                    Colores.AMARILLO + (i + 1) + ". " + Colores.VERDE + Datos.rutas[i].destino() + Colores.RESET);
+                        Colores.AMARILLO + (i + 1) + ". " + Colores.VERDE + Datos.rutas[i].destino() + Colores.RESET);
             }
         }
-        
-        System.out.println(Colores.AMARILLO + "Seleccione destino: " + Colores.RESET);
+
+        System.out.println("Seleccione destino: ");
         int opcion = sc.nextInt();
         // retornamos el destino de la ruta seleccionada en String
         return Datos.rutas[opcion - 1].destino();
@@ -40,10 +39,10 @@ public class Funciones {
 
     // Seleccionar Fecha
     public static LocalDate elegirFecha() {
-        System.out.println("¿Cuándo viajas?");
-        System.out.println("1. Hoy");
-        System.out.println("2. Mañana");
-        System.out.println("3. Elegir");
+        System.out.println(Colores.BG_NEGRO + Colores.NEGRITA + "¿Cuándo viajas?" + Colores.RESET);
+        System.out.println(Colores.AMARILLO + "1." + Colores.MORADO + " Hoy" + Colores.RESET);
+        System.out.println(Colores.AMARILLO + "2." + Colores.MORADO + " Mañana" + Colores.RESET);
+        System.out.println(Colores.AMARILLO + "3." + Colores.MORADO + " Elegir" + Colores.RESET);
         int opcion = sc.nextInt();
         if (opcion == 1) {
             return LocalDate.now(); // devuelve la fecha actual
@@ -54,7 +53,7 @@ public class Funciones {
             int dia = sc.nextInt();
             LocalDate hoy = LocalDate.now(); // obtenemos la fecha actual
             return LocalDate.of(2026, hoy.getMonth(), dia); // devuelve la fecha seleccionada
-        }else{
+        } else {
             System.out.println("Error");
         }
         return null;
@@ -76,45 +75,49 @@ public class Funciones {
     // Pasaje seleccionado, Devuelve un dato de tipo Pasaje
     public static Datos.Pasaje pasaje(Datos.Ruta ruta, Datos.Bus bus, LocalDate fecha) {
         return new Datos.Pasaje(bus, ruta, fecha);
-        /*Retorna un dato de tipo Pasaje:
-        Ruta:
-            origen,
-            destino,
-            precio
-        Bus:
-            tipoBus,
-            Asiento,
-            VariacionPrecio
-        fecha, 
-        EJEMPLO: Pasaje[bus=Bus[tipoBus=Suite, asientos=160, variacionPrecio=47.0], ruta=Ruta[origen=Puno, destino=Lima, precio=130.0], fecha=2026-05-18]*/
+        /*
+         * Retorna un dato de tipo Pasaje:
+         * Ruta:
+         * origen,
+         * destino,
+         * precio
+         * Bus:
+         * tipoBus,
+         * Asiento,
+         * VariacionPrecio
+         * fecha,
+         * EJEMPLO: Pasaje[bus=Bus[tipoBus=Suite, asientos=160, variacionPrecio=47.0],
+         * ruta=Ruta[origen=Puno, destino=Lima, precio=130.0], fecha=2026-05-18]
+         */
     }
 
     // Mostrar y seleccionar buses disponibles
-    public static Datos.Bus mostrarBuses(Datos.Bus[] buses,Datos.Ruta ruta, LocalDate fecha){
+    public static Datos.Bus mostrarBuses(Datos.Bus[] buses, Datos.Ruta ruta, LocalDate fecha) {
         int opcion;
-        do{
-            System.out.println("------Viajes recomendados para ti-----");
-        for(int i = 0; i < Datos.buses.length; i++){
-            double precioFinal = ruta.precio() + buses[i].variacionPrecio();
+        do {
             System.out.println(
-            (i + 1) + ". " + buses[i].tipoBus() + " | Asientos: " + buses[i].asientos() + 
-            " | " + ruta.origen() + " -> " + ruta.destino() + 
-            " | Precio: S/. " + precioFinal + " | Fecha: " + fecha
-        );
-        }
-        System.out.println("Elige un Buss: ");
-        opcion = sc.nextInt();
-        if (opcion < 1 || opcion > buses.length) {
-            System.out.println("Error: Opcion no valida. Vuelva a intentar");
-        }
+                    Colores.BG_NEGRO + Colores.NEGRITA + "------Viajes recomendados para ti-----" + Colores.RESET);
+            for (int i = 0; i < Datos.buses.length; i++) {
+                double precioFinal = ruta.precio() + buses[i].variacionPrecio();
+                System.out.println(
+                        Colores.AMARILLO + (i + 1) + ". " +
+                        Colores.MORADO + buses[i].tipoBus() +
+                        Colores.BLANCO + " | " + Colores.AMARILLO + "Asientos: " + Colores.RESET
+                        + buses[i].asientos() +
+                        Colores.BLANCO + " | " + Colores.CYAN + ruta.origen() + Colores.AMARILLO + " -> "
+                        + Colores.CYAN + ruta.destino() +
+                        Colores.BLANCO + " | " + Colores.AMARILLO + "Precio: S/. " + Colores.VERDE + precioFinal
+                        +
+                        Colores.BLANCO + " | " + Colores.AMARILLO + "Fecha: " + Colores.BRIGHT_CYAN + fecha + Colores.RESET);
+            }
+            System.out.print("Elige un Buss: ");
+            opcion = sc.nextInt();
+            if (opcion < 1 || opcion > buses.length) {
+                System.out.println("Error: Opcion no valida. Vuelva a intentar");
+            }
 
-        }while(opcion < 1 || opcion > buses.length);
+        } while (opcion < 1 || opcion > buses.length);
 
         return buses[opcion - 1];
-    }
-
-    // obtener el precio en double mediante el Pasaje Para validar pagos
-    public static double obtenerPrecio(Datos.Pasaje pasaje){ 
-        return pasaje.ruta().precio() + pasaje.bus().variacionPrecio();
     }
 }
