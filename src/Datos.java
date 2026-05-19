@@ -73,7 +73,8 @@ public class Datos {
             String tipoFactura,
             String CodigoBoleto, // Ojo aquí: empieza con mayúscula
             String dni,
-            String nombre,
+            String nombre, // daniel
+            String correo,
             String Servicio, // Ojo aquí: empieza con mayúscula
             String ruta,
             String bus,
@@ -90,6 +91,7 @@ public class Datos {
                 String CodigoBoleto,
                 String dni,
                 String nombre,
+                String correo,
                 String Servicio,
                 String ruta,
                 String bus,
@@ -110,8 +112,9 @@ public class Datos {
                     "BOLETA DE VENTA ELECTRÓNICA", // tipoFactura (Fijo)
                     CodigoBoleto,
                     dni,
-                    nombre,
-                    Servicio,
+                    nombre, // Scanner "daniel"
+                    correo,
+                    "Transporte Terreste",
                     ruta,
                     bus,
                     fecha,
