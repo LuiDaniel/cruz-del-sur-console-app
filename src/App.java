@@ -1,13 +1,13 @@
 import java.time.LocalDate;
 
-public class Menus {
+public class App {
     public static Datos.Pasaje busquedaDePasajes(){
         String origen = Funciones.elegirOrigen();
         String destino = Funciones.elegirDestino(origen);
         Datos.Ruta rutaSeleccionada = Funciones.devolverRutaSeleccionada(origen, destino);
         LocalDate fecha = Funciones.elegirFecha();
         Datos.Bus bus = Funciones.mostrarBuses(Datos.buses, rutaSeleccionada, fecha);
-        Datos.Pasaje pasaje = Funciones.pasaje(rutaSeleccionada, bus, fecha);
+        Datos.Pasaje pasaje = Funciones.crearPasaje(rutaSeleccionada, bus, fecha);
         return pasaje;
     }
     public static Datos.Boleta generarBoleta(Datos.Pasaje pasaje){
@@ -20,4 +20,5 @@ public class Menus {
             return null;
         }
     }
+    
 }

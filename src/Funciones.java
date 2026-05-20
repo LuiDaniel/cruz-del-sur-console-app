@@ -1,4 +1,8 @@
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import detalles.Colores;
 import java.time.LocalDate;
 
@@ -8,59 +12,102 @@ public class Funciones {
     // Seleccionar origen
     public static String elegirOrigen() {
         System.out.println(Colores.BG_NEGRO + Colores.NEGRITA + "-----ORIGENES-----" + Colores.RESET);
-        // Iteramos el arreglo de rutas
-        for (int i = 0; i < Datos.rutas.length; i++) {
-            System.out.println(
-                    Colores.AMARILLO + (i + 1) + ". " + Colores.VERDE + Datos.rutas[i].origen() + Colores.RESET);
+
+        // Creamos una lista vacia para añadir los origenes sin repeticion
+        Set<String> origenes = new LinkedHashSet<>();
+        for (Datos.Ruta ruta : Datos.rutas) {
+            origenes.add(ruta.origen());
         }
+
+        List<String> listaOrigenes = new ArrayList<>(origenes);
+
+        for (int i = 0; i < listaOrigenes.size(); i++) {
+            System.out.println(
+                    Colores.AMARILLO + (i + 1) + ". " + Colores.VERDE + listaOrigenes.get(i) + Colores.RESET);
+        }
+
         int opcion = 0;
         while (opcion < 1 || opcion > Datos.rutas.length) {
             System.out.println("Seleccione origen: ");
-            opcion = sc.nextInt();
+            opcion = validarOpcion(1, listaOrigenes.size());
+        }
 
-            if (opcion < 1 || opcion > Datos.rutas.length) {
-            System.out.println(Colores.ROJO + "Opción inválida. Intente de nuevo." + Colores.RESET);
-        }
-        }
-        
         // devuelve el origen de la ruta seleccionada en String
-        return Datos.rutas[opcion - 1].origen();
+        return listaOrigenes.get(opcion - 1);
     }
 
     // Seleccionar Destino
     public static String elegirDestino(String origen) {
-        System.out.println(Colores.BG_NEGRO + Colores.NEGRITA + "-----DESTINOS-----" + Colores.RESET);
-        // Iteramos el arreglo de rutas
-        for (int i = 0; i < Datos.rutas.length; i++) {
-            // Validamos el origen ingresado para mostrar solo sus destinos disponibles
-            if (origen.equalsIgnoreCase(Datos.rutas[i].origen())) {
-                System.out.println(
-                        Colores.AMARILLO + (i + 1) + ". " + Colores.VERDE + Datos.rutas[i].destino() + Colores.RESET);
+        System.out.println(
+                Colores.BG_NEGRO +
+                        Colores.NEGRITA +
+                        "-----DESTINOS-----" +
+                        Colores.RESET);
+
+        List<String> destinos = new ArrayList<>();
+        for (Datos.Ruta ruta : Datos.rutas) {
+            if (origen.equalsIgnoreCase(ruta.origen())) {
+                destinos.add(ruta.destino());
             }
         }
+        for (int i = 0; i < destinos.size(); i++) {
+            System.out.println(
+                    Colores.AMARILLO +
+                            (i + 1) +
+                            ". " +
+                            Colores.VERDE +
+                            destinos.get(i) +
+                            Colores.RESET);
+        }
+        int opcion = 0;
+        while (opcion < 1 || opcion > destinos.size()) {
+            System.out.print("Seleccione destino: ");
+            opcion = validarOpcion(1, destinos.size());
+        }
 
-        System.out.println("Seleccione destino: ");
-        int opcion = sc.nextInt();
-        // retornamos el destino de la ruta seleccionada en String
-        return Datos.rutas[opcion - 1].destino();
+        return destinos.get(opcion - 1);
     }
 
     // Seleccionar Fecha
     public static LocalDate elegirFecha() {
-        System.out.println(Colores.BG_NEGRO + Colores.NEGRITA + "¿Cuándo viajas?" + Colores.RESET);
-        System.out.println(Colores.AMARILLO + "1." + Colores.MORADO + " Hoy" + Colores.RESET);
-        System.out.println(Colores.AMARILLO + "2." + Colores.MORADO + " Mañana" + Colores.RESET);
-        System.out.println(Colores.AMARILLO + "3." + Colores.MORADO + " Elegir" + Colores.RESET);
-        int opcion = sc.nextInt();
+        int opcion = 0;
+        while (opcion < 1 || opcion > 3) {
+            System.out.println(Colores.BG_NEGRO + Colores.NEGRITA + "¿Cuándo viajas?" + Colores.RESET);
+            System.out.println(Colores.AMARILLO + "1." + Colores.MORADO + " Hoy" + Colores.RESET);
+            System.out.println(Colores.AMARILLO + "2." + Colores.MORADO + " Mañana" + Colores.RESET);
+            System.out.println(Colores.AMARILLO + "3." + Colores.MORADO + " Elegir" + Colores.RESET);
+            opcion = validarOpcion(1, 3);
+        }
         if (opcion == 1) {
             return LocalDate.now(); // devuelve la fecha actual
         } else if (opcion == 2) {
             return LocalDate.now().plusDays(1); // agrega un dia a la fecha actual
         } else if (opcion == 3) {
-            System.out.println("Dia: ");
-            int dia = sc.nextInt();
+            int dia = 0;
             LocalDate hoy = LocalDate.now(); // obtenemos la fecha actual
-            return LocalDate.of(2026, hoy.getMonthValue(), dia); // devuelve la fecha seleccionada
+            while (dia < hoy.getDayOfMonth() || dia > hoy.lengthOfMonth()) {
+                System.out.print("Dia: ");
+                if (sc.hasNextInt()) {
+                    dia = sc.nextInt();
+                    if (dia < hoy.getDayOfMonth() || dia > hoy.lengthOfMonth()) {
+                        System.out.println(
+                                detalles.Colores.ROJO
+                                        + "El dia no está dentro del rango disponible: "
+                                        + detalles.Colores.BLANCO
+                                        + hoy.getDayOfMonth()
+                                        + " - "
+                                        + hoy.lengthOfMonth()
+                                        + detalles.Colores.RESET);
+                        // sc.next();
+                    }
+                } else {
+                    System.out
+                            .println(detalles.Colores.ROJO + "Error. debe ingresar un numero" + detalles.Colores.RESET);
+                    sc.next();
+                }
+
+            }
+            return LocalDate.of(hoy.getYear(), hoy.getMonthValue(), dia); // devuelve la fecha seleccionada
         } else {
             System.out.println("Error");
         }
@@ -81,7 +128,7 @@ public class Funciones {
     }
 
     // Pasaje seleccionado, Devuelve un dato de tipo Pasaje
-    public static Datos.Pasaje pasaje(Datos.Ruta ruta, Datos.Bus bus, LocalDate fecha) {
+    public static Datos.Pasaje crearPasaje(Datos.Ruta ruta, Datos.Bus bus, LocalDate fecha) {
         return new Datos.Pasaje(bus, ruta, fecha);
         /*
          * Retorna un dato de tipo Pasaje:
@@ -101,7 +148,7 @@ public class Funciones {
 
     // Mostrar y seleccionar buses disponibles
     public static Datos.Bus mostrarBuses(Datos.Bus[] buses, Datos.Ruta ruta, LocalDate fecha) {
-        int opcion;
+        int opcion = 0;
         do {
             System.out.println(
                     Colores.BG_NEGRO + Colores.NEGRITA + "------Viajes recomendados para ti-----" + Colores.RESET);
@@ -109,17 +156,18 @@ public class Funciones {
                 double precioFinal = ruta.precio() + buses[i].variacionPrecio();
                 System.out.println(
                         Colores.AMARILLO + (i + 1) + ". " +
-                        Colores.MORADO + buses[i].tipoBus() +
-                        Colores.BLANCO + " | " + Colores.AMARILLO + "Asientos: " + Colores.RESET
-                        + buses[i].asientos() +
-                        Colores.BLANCO + " | " + Colores.CYAN + ruta.origen() + Colores.AMARILLO + " -> "
-                        + Colores.CYAN + ruta.destino() +
-                        Colores.BLANCO + " | " + Colores.AMARILLO + "Precio: S/. " + Colores.VERDE + precioFinal
-                        +
-                        Colores.BLANCO + " | " + Colores.AMARILLO + "Fecha: " + Colores.BRIGHT_CYAN + fecha + Colores.RESET);
+                                Colores.MORADO + buses[i].tipoBus() +
+                                Colores.BLANCO + " | " + Colores.AMARILLO + "Asientos: " + Colores.RESET
+                                + buses[i].asientos() +
+                                Colores.BLANCO + " | " + Colores.CYAN + ruta.origen() + Colores.AMARILLO + " -> "
+                                + Colores.CYAN + ruta.destino() +
+                                Colores.BLANCO + " | " + Colores.AMARILLO + "Precio: S/. " + Colores.VERDE + precioFinal
+                                +
+                                Colores.BLANCO + " | " + Colores.AMARILLO + "Fecha: " + Colores.BRIGHT_CYAN + fecha
+                                + Colores.RESET);
             }
             System.out.print("Elige un Buss: ");
-            opcion = sc.nextInt();
+            opcion = validarOpcion(1, buses.length);
             if (opcion < 1 || opcion > buses.length) {
                 System.out.println("Error: Opcion no valida. Vuelva a intentar");
             }
@@ -127,5 +175,29 @@ public class Funciones {
         } while (opcion < 1 || opcion > buses.length);
 
         return buses[opcion - 1];
+    }
+
+    //Validar opcion
+    public static int validarOpcion(int min, int max) {
+        int opcion = 0;
+        while (opcion < min || opcion > max) {
+            if (sc.hasNextInt()) {
+                opcion = sc.nextInt();
+                if (opcion < min || opcion > max) {
+                    System.out.println(
+                            Colores.ROJO +
+                            "Opción inválida."
+                            + Colores.RESET);
+                }
+            } else {
+                System.out.println(
+                        Colores.ROJO +
+                        "Debe ingresar un número."
+                        + Colores.RESET);
+                sc.next();
+            }
+        }
+
+        return opcion;
     }
 }

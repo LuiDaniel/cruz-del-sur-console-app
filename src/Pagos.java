@@ -5,15 +5,15 @@ public class Pagos {
 
     // obtener el precio en double mediante el Pasaje Para validar pagos
     public static double obtenerPrecio(Datos.Pasaje pasaje) {
-        double subtotal = pasaje.ruta().precio() + pasaje.bus().variacionPrecio();
-        double igv = subtotal * 0.18;
-        return subtotal + igv;
+        double subtotal = pasaje.ruta().precio() + pasaje.bus().variacionPrecio(); //100
+        double igv = subtotal * 0.18; // 18
+        return subtotal + igv; //118
     }
 
     // ELEGIR METODO DE PAGO
-    public static boolean tipoDePago(double montoAPagar) {
+    public static boolean tipoDePago(double montoAPagar) { //118
         Scanner sc = new Scanner(System.in);
-        int opcion = -1;
+        int opcion  = -1;
 
         while (opcion < 1 || opcion > 3) {
             System.out.println("SELECCIONE EL MEDIO DE PAGO: ");
@@ -42,12 +42,13 @@ public class Pagos {
         System.out.println("\n--- PASARELA DE PAGO CRUZ DEL SUR ---");
         System.out.printf("Monto a abonar: S/. %.2f\n", montoAPagar);
         System.out.println("(Puedes escribir 'X' en cualquier campo para cancelar y volver)");
+
         Datos.Tarjeta tarjetaCliente = null;
 
         while (tarjetaCliente == null) {
             try {
                 // 1. Número de tarjeta
-                System.out.println("\nIngrese número de tarjeta (16 dígitos): ");
+                System.out.println("Ingrese número de tarjeta (16 dígitos): ");
                 String num = sc.nextLine().trim().replace(" ", "");
                 if (num.equalsIgnoreCase("X"))
                     return false; // Salida inmediata
@@ -74,7 +75,7 @@ public class Pagos {
                 tarjetaCliente = new Datos.Tarjeta(num, titular, vencimiento, cvv);
 
             } catch (IllegalArgumentException e) {
-                System.out.println("\n Error: " + e.getMessage());
+                System.out.println("Error: " + e.getMessage());
                 System.out.println("Por favor, intente de nuevo o presione 'X' para salir.");
             }
         }
@@ -126,7 +127,7 @@ public class Pagos {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("\n--- PAGO EN EFECTIVO ---");
-        System.out.printf("Monto a pagar: S/. %.2f\n", montoAPagar);
+        System.out.println("Monto a pagar: S/." + montoAPagar);
 
         System.out.println("Ingrese dinero entregado: ");
         double dinero = sc.nextDouble();

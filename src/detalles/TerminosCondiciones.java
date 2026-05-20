@@ -2,7 +2,6 @@ package detalles;
 import java.util.Scanner;
 
 public class TerminosCondiciones {
-    
 
     public static int mostrarTerminos(){
         Scanner sc = new Scanner(System.in);
@@ -78,7 +77,7 @@ public class TerminosCondiciones {
                 System.out.println("5. No acumulable con otras promociones y/o descuentos.");
                 break;
                 default:
-                System.out.println("fdfe");
+                System.out.println("Rafinha ");
         }
     }
 }

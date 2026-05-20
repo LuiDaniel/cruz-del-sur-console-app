@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.util.Locale;
 
 public class Boleta {
     public static Datos.Boleta generarBoleta(Datos.Cliente cliente, Datos.Pasaje pasaje) {

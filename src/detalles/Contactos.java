@@ -13,39 +13,40 @@ public class Contactos {
             String ig,
             String twiter) {
     }
-
-    static DatosEmpresa datosEmpresa = (
-        new DatosEmpresa(
+    
+    // Eliminamos los paréntesis externos () y ordenamos los datos según el record
+    public static DatosEmpresa datosEmpresa = new DatosEmpresa(
             "Cruz del sur",
             "2024 CRUZ DEL SUR | TODOS LOS DERECHOS RESERVADOS",
             "Av. Javier Prado 1109, La Victoria - Lima, Perú",
-            "cruzdelsur@gmail.com", 
-            "+51 987 876 567", 
-            "ig: @cruzdelsur", 
-            "Facebook: CRUZ DEL SUR", 
-            "Youtube: @CRUZ DEL SUR", 
-            "Twitter:@CRUZ DEL SUR"));
+            "cruzdelsur@gmail.com",
+            "+51 987 876 567",
+            "Facebook: CRUZ DEL SUR", // fb
+            "Youtube: @CRUZ DEL SUR", // youtube
+            "ig: @cruzdelsur", // ig
+            "Twitter:@CRUZ DEL SUR" // twiter
+    );
 
-    public static void mostrarDatos(DatosEmpresa datos) {
+    public static void mostrarDatos(DatosEmpresa datos) { //datosEmpresa
         System.out.println(Colores.AMARILLO + datos.nombre() + Colores.RESET);
         System.out.println("===============================");
         System.out.println("CONTACTOS EMPRESA");
         System.out.println("================================");
 
-        System.out.println("Empresa: "+datos.nombre());
-        System.out.println("Derechos Reservados: "+datos.derechosReservados());
-        System.out.println("Dirección: "+datos.direccion());
-        System.out.println("Correo: "+datos.correo());
-        System.out.println("Número: "+datos.numero());
-        System.out.println("Facebook: "+datos.fb());
-        System.out.println("Youtube: "+datos.youtube());
-        System.out.println("Instagram: "+datos.ig());
-        System.out.println("Twitter: "+datos.twiter());
+        System.out.println("Empresa: " + datos.nombre());
+        System.out.println("Derechos Reservados: " + datos.derechosReservados());
+        System.out.println("Dirección: " + datos.direccion());
+        System.out.println("Correo: " + datos.correo());
+        System.out.println("Número: " + datos.numero());
+        System.out.println("Facebook: " + datos.fb());
+        System.out.println("Youtube: " + datos.youtube());
+        System.out.println("Instagram: " + datos.ig());
+        System.out.println("Twitter: " + datos.twiter());
 
         System.out.println("===============================");
 
-
     }
+
     public static void main(String[] args) {
         mostrarDatos(datosEmpresa);
 

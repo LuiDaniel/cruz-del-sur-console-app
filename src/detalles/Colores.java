@@ -1,6 +1,6 @@
 package detalles;
-public class Colores {
 
+public class Colores {
     // RESET
     public static final String RESET = "\u001B[0m";
 
