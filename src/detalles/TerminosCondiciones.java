@@ -13,12 +13,15 @@ public class TerminosCondiciones {
         System.out.println("5. T&C - RETORNO20");
         System.out.println("6. T&C - Descuento Migración del programa Viajeros a Pasajero Frecuente");
         System.out.println("7. T&C Promoción: Arequipa desde S/99");
-        System.out.println("Elige el termino que quieras leer: ");
+        System.out.println("Elige el termino que quieras leer o presione 0 para volver: ");
         int opcion = sc.nextInt();
         return opcion;
     }
 
-    public void mostrarTerminoSeleccionado(int opcion){
+    public static void mostrarTerminoSeleccionado(int opcion){
+        if(opcion == 0){
+            
+        }
         switch (opcion) {
             case 1:
                 System.out.println("T&C - Programa Viajemos (Vigente hasta el 11.08.25)");

@@ -27,7 +27,7 @@ public class Contactos {
             "Twitter:@CRUZ DEL SUR" // twiter
     );
 
-    public static void mostrarDatos(DatosEmpresa datos) { //datosEmpresa
+    public static void mostrarDatosEmpresa(DatosEmpresa datos) { //datosEmpresa
         System.out.println(Colores.AMARILLO + datos.nombre() + Colores.RESET);
         System.out.println("===============================");
         System.out.println("CONTACTOS EMPRESA");
@@ -44,11 +44,6 @@ public class Contactos {
         System.out.println("Twitter: " + datos.twiter());
 
         System.out.println("===============================");
-
-    }
-
-    public static void main(String[] args) {
-        mostrarDatos(datosEmpresa);
 
     }
 }
