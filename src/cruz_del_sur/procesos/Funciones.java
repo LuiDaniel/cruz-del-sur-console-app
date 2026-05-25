@@ -34,7 +34,7 @@ public class Funciones {
         }
 
         int opcion = 0;
-        while (opcion < 1 || opcion > cruz_del_sur.modelos.rutas.length) {
+        while (opcion < 1 || opcion > listaOrigenes.size()) {
             System.out.println("Seleccione origen: ");
             opcion = validarOpcion(1, listaOrigenes.size());
         }
@@ -125,7 +125,7 @@ public class Funciones {
     public static Datos.Ruta devolverRutaSeleccionada(String origen, String destino) {
         // Iteramos todo el array de rutas hasta encontra una ruta que coincida con el
         // origen y destino seleccionado
-        for (int i = 0; i < cruz_del_sur.modelos.rutas.length; i++) {
+        for (int i = 0; i < Datos.rutas.length; i++) {
             if (origen.equalsIgnoreCase(Datos.rutas[i].origen())
                     && destino.equalsIgnoreCase(Datos.rutas[i].destino())) {
                 return Datos.rutas[i];

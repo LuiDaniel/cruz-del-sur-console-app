@@ -196,7 +196,7 @@ public class Datos {
     }
 
     // ARREGLO DE RUTAS
-    static Ruta[] rutas = {
+    public static Ruta[] rutas = {
             // new Ruta(origen, destino, duracion, precio)
             new Ruta("Lima", "Arequipa", 16, 70.0),
             new Ruta("Arequipa", "Lima", 16, 70.0),
