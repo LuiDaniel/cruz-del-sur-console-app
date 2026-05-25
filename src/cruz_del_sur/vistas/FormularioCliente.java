@@ -1,6 +1,11 @@
+package cruz_del_sur.vistas;
 import java.util.Scanner;
+
+import cruz_del_sur.modelos.Datos;
+import cruz_del_sur.modelos.Datos.Cliente;
+import cruz_del_sur.vistas.detalles.Colores;
+
 import java.util.InputMismatchException;
-import detalles.Colores;
 
 public class FormularioCliente {
 

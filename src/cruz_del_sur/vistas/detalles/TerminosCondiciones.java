@@ -1,5 +1,7 @@
-package detalles;
+package cruz_del_sur.vistas.detalles;
 import java.util.Scanner;
+
+import cruz_del_sur.App;
 
 public class TerminosCondiciones {
 
@@ -20,7 +22,7 @@ public class TerminosCondiciones {
 
     public static void mostrarTerminoSeleccionado(int opcion){
         if(opcion == 0){
-            
+            App.volverAlInicio();
         }
         switch (opcion) {
             case 1:

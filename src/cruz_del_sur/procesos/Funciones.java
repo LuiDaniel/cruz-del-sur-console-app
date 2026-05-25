@@ -1,9 +1,16 @@
+package cruz_del_sur.procesos;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
-import detalles.Colores;
+
+import cruz_del_sur.modelos.Datos;
+import cruz_del_sur.modelos.Datos.Bus;
+import cruz_del_sur.modelos.Datos.Pasaje;
+import cruz_del_sur.modelos.Datos.Ruta;
+import cruz_del_sur.vistas.detalles.Colores;
+
 import java.time.LocalDate;
 
 public class Funciones {
@@ -27,7 +34,7 @@ public class Funciones {
         }
 
         int opcion = 0;
-        while (opcion < 1 || opcion > Datos.rutas.length) {
+        while (opcion < 1 || opcion > cruz_del_sur.modelos.rutas.length) {
             System.out.println("Seleccione origen: ");
             opcion = validarOpcion(1, listaOrigenes.size());
         }
@@ -91,18 +98,18 @@ public class Funciones {
                     dia = sc.nextInt();
                     if (dia < hoy.getDayOfMonth() || dia > hoy.lengthOfMonth()) {
                         System.out.println(
-                                detalles.Colores.ROJO
+                                cruz_del_sur.vistas.detalles.Colores.ROJO
                                         + "El dia no está dentro del rango disponible: "
-                                        + detalles.Colores.BLANCO
+                                        + cruz_del_sur.vistas.detalles.Colores.BLANCO
                                         + hoy.getDayOfMonth()
                                         + " - "
                                         + hoy.lengthOfMonth()
-                                        + detalles.Colores.RESET);
+                                        + cruz_del_sur.vistas.detalles.Colores.RESET);
                         // sc.next();
                     }
                 } else {
                     System.out
-                            .println(detalles.Colores.ROJO + "Error. debe ingresar un numero" + detalles.Colores.RESET);
+                            .println(cruz_del_sur.vistas.detalles.Colores.ROJO + "Error. debe ingresar un numero" + cruz_del_sur.vistas.detalles.Colores.RESET);
                     sc.next();
                 }
 
@@ -118,7 +125,7 @@ public class Funciones {
     public static Datos.Ruta devolverRutaSeleccionada(String origen, String destino) {
         // Iteramos todo el array de rutas hasta encontra una ruta que coincida con el
         // origen y destino seleccionado
-        for (int i = 0; i < Datos.rutas.length; i++) {
+        for (int i = 0; i < cruz_del_sur.modelos.rutas.length; i++) {
             if (origen.equalsIgnoreCase(Datos.rutas[i].origen())
                     && destino.equalsIgnoreCase(Datos.rutas[i].destino())) {
                 return Datos.rutas[i];

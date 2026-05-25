@@ -1,4 +1,4 @@
-package detalles;
+package cruz_del_sur.vistas.detalles;
 
 public class Colores {
     // RESET

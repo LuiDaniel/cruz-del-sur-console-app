@@ -1,6 +1,12 @@
+package cruz_del_sur;
 import java.time.LocalDate;
 import java.util.Scanner;
-import detalles.TerminosCondiciones;
+
+import cruz_del_sur.modelos.Datos;
+import cruz_del_sur.procesos.Boleta;
+import cruz_del_sur.procesos.Funciones;
+import cruz_del_sur.procesos.Pagos;
+import cruz_del_sur.vistas.FormularioCliente;
 
 public class App {
     public static Scanner sc = new Scanner(System.in);
@@ -19,12 +25,12 @@ public class App {
                 App.volverAlInicio();
                 break;
             case 2:
-                detalles.Contactos.mostrarDatosEmpresa(detalles.Contactos.datosEmpresa);
+                cruz_del_sur.vistas.detalles.Contactos.mostrarDatosEmpresa(cruz_del_sur.vistas.detalles.Contactos.datosEmpresa);
                 App.volverAlInicio();
                 break;
             case 3:
-                int opcionTermino = detalles.TerminosCondiciones.mostrarTerminos();
-                detalles.TerminosCondiciones.mostrarTerminoSeleccionado(opcionTermino);
+                int opcionTermino = cruz_del_sur.vistas.detalles.TerminosCondiciones.mostrarTerminos();
+                cruz_del_sur.vistas.detalles.TerminosCondiciones.mostrarTerminoSeleccionado(opcionTermino);
                 App.volverAlInicio();
             default:
                 break;
@@ -69,5 +75,4 @@ public class App {
             System.exit(0);
         }
     }
-
 }
