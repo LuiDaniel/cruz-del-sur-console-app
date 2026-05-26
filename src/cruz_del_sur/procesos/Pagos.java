@@ -1,13 +1,8 @@
 package cruz_del_sur.procesos;
 
 import java.util.Scanner;
-
 import cruz_del_sur.modelos.Datos;
-import cruz_del_sur.modelos.Datos.Boleta;
-import cruz_del_sur.modelos.Datos.Pasaje;
-import cruz_del_sur.modelos.Datos.Tarjeta;
 import cruz_del_sur.vistas.detalles.Colores;
-
 import java.util.InputMismatchException;
 
 public class Pagos {
@@ -60,13 +55,13 @@ public class Pagos {
         Scanner sc = new Scanner(System.in);
 
         System.out.println(Colores.BG_AZUL + Colores.BLANCO + Colores.NEGRITA + "\n═══════════════════════════════════════\n         PASARELA DE PAGO VISA        \n═══════════════════════════════════════" + Colores.RESET);
-        System.out.println(Colores.BRIGHT_VERDE + "💳 Monto a pagar: S/ " + String.format("%.2f", montoAPagar) + Colores.RESET);
+        System.out.println(Colores.BRIGHT_VERDE + "💳 Monto a pagar: S/ " + String.format("%.2f", montoAPagar) + Colores.RESET); //
         System.out.println(Colores.AMARILLO + "(Escriba X para cancelar)" + Colores.RESET);
 
         Datos.Tarjeta tarjetaCliente = null;
 
         while (tarjetaCliente == null) {
-            try {
+            try { // intento
                 // NÚMERO
                 System.out.print(Colores.BRIGHT_CYAN + "\n💳 Número de tarjeta: " + Colores.RESET);
                 String num = sc.nextLine().trim().replace(" ", "");
@@ -173,7 +168,7 @@ public class Pagos {
         System.out.println(Colores.NEGRITA + Colores.AMARILLO + "DATOS DEL CLIENTE" + Colores.RESET);
         System.out.println("DNI      : " + boleta.dni());
         System.out.println("NOMBRE   : " + boleta.nombre());
-        if (boleta.correo() != null) {
+        if (boleta.correo() != null) { // si el correo no esta vacio imprimimos el correo
             System.out.println("CORREO   : " + boleta.correo());
         }
         System.out.println();

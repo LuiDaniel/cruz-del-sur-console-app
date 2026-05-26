@@ -32,6 +32,9 @@ public class App {
                 int opcionTermino = cruz_del_sur.vistas.detalles.TerminosCondiciones.mostrarTerminos();
                 cruz_del_sur.vistas.detalles.TerminosCondiciones.mostrarTerminoSeleccionado(opcionTermino);
                 App.volverAlInicio();
+            case 4:
+                Funciones.verBuses();
+                App.volverAlInicio();
             default:
                 break;
         }

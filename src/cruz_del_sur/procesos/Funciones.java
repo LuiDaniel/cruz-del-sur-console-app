@@ -5,10 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
+import cruz_del_sur.App;
 import cruz_del_sur.modelos.Datos;
-import cruz_del_sur.modelos.Datos.Bus;
-import cruz_del_sur.modelos.Datos.Pasaje;
-import cruz_del_sur.modelos.Datos.Ruta;
 import cruz_del_sur.vistas.detalles.Colores;
 
 import java.time.LocalDate;
@@ -207,4 +205,12 @@ public class Funciones {
 
         return opcion;
     }
+    //ver buses
+    public static void verBuses(){
+        System.out.println("---Todos nuestros buses---");
+        for(int i = 0; i < Datos.buses.length; i ++){
+            System.out.println(Datos.buses[i]);
+        }
+    }
 }
+

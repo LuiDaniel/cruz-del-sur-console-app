@@ -2,8 +2,6 @@ package cruz_del_sur.procesos;
 import java.time.LocalDate;
 
 import cruz_del_sur.modelos.Datos;
-import cruz_del_sur.modelos.Datos.Cliente;
-import cruz_del_sur.modelos.Datos.Pasaje;
 
 public class Boleta {
     public static Datos.Boleta generarBoleta(Datos.Cliente cliente, Datos.Pasaje pasaje) {
